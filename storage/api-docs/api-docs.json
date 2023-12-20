@@ -1,0 +1,375 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Swagger Petstore",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/candidature": {},
+        "/candidature/{formation_id}": {
+            "post": {
+                "summary": "Soumettre une nouvelle candidature",
+                "operationId": "274b0bd2c690eae5ffe368dd8a2ffc83",
+                "parameters": [
+                    {
+                        "name": "formation_id",
+                        "in": "path",
+                        "description": "ID de la formation",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidature effectuée avec succès"
+                    },
+                    "422": {
+                        "description": "Non autorisé ou erreur de validation"
+                    }
+                }
+            }
+        },
+        "/candidature/accepter/{candidatureId}": {
+            "patch": {
+                "summary": "Accepter une candidature",
+                "operationId": "622ce444d13b582db4e12010a090b27e",
+                "parameters": [
+                    {
+                        "name": "candidatureId",
+                        "in": "path",
+                        "description": "ID de la candidature",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidature acceptée avec succès"
+                    }
+                }
+            }
+        },
+        "/candidature/refuser/{candidatureId}": {
+            "patch": {
+                "summary": "Refuser une candidature",
+                "operationId": "55daff6d6ebf5638e8d50a8ef5e1f7c1",
+                "parameters": [
+                    {
+                        "name": "candidatureId",
+                        "in": "path",
+                        "description": "ID de la candidature",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidature refusée avec succès"
+                    }
+                }
+            }
+        },
+        "/candidature/en_attente": {
+            "get": {
+                "summary": "Liste des candidatures en attente",
+                "operationId": "b5fe86302c9a65b9393f732d1eb20e35",
+                "responses": {
+                    "200": {
+                        "description": "Liste des candidatures en attente"
+                    }
+                }
+            }
+        },
+        "/candidature/acceptees": {
+            "get": {
+                "summary": "Liste des candidatures acceptées",
+                "operationId": "c96e71d1cb42b4f4613cebdafa893030",
+                "responses": {
+                    "200": {
+                        "description": "Liste des candidatures acceptées"
+                    }
+                }
+            }
+        },
+        "/candidature/refusees": {
+            "get": {
+                "summary": "Liste des candidatures refusées",
+                "operationId": "8d10ca18b79a00996a58ca9a0e9c4c28",
+                "responses": {
+                    "200": {
+                        "description": "Liste des candidatures refusées"
+                    }
+                }
+            }
+        },
+        "/formations": {
+            "post": {
+                "summary": "Ajouter une nouvelle formation",
+                "operationId": "44d8f4375964e7950c625aa15b67b65c",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nom": {
+                                        "type": "string"
+                                    },
+                                    "date_candidature": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "date_limite_candidature": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Formation ajoutée avec succès"
+                    },
+                    "422": {
+                        "description": "Erreur de validation"
+                    }
+                }
+            }
+        },
+        "/formations/{id}": {
+            "get": {
+                "summary": "Afficher les détails d'une formation",
+                "operationId": "dbe4820c33b3e24200d11fa9945f50ca",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la formation",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Détails de la formation"
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Supprimer une formation",
+                "operationId": "3eca4172ba46a5d57f722f56b6448dda",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la formation",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Formation supprimée avec succès"
+                    },
+                    "404": {
+                        "description": "Formation non trouvée"
+                    }
+                }
+            },
+            "patch": {
+                "summary": "Modifier une formation existante",
+                "operationId": "5748197fa5448b69b715411d8f5df1bd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID de la formation",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nom": {
+                                        "type": "string"
+                                    },
+                                    "date_candidature": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "date_limite_candidature": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Formation modifiée avec succès"
+                    },
+                    "404": {
+                        "description": "Formation non trouvée"
+                    }
+                }
+            }
+        },
+        "/users/ajouterRole": {
+            "post": {
+                "summary": "Ajouter un nouveau rôle",
+                "operationId": "eabd081f82744448a4d7289829282027",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nonRole": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Rôle ajouté avec succès"
+                    },
+                    "422": {
+                        "description": "Erreur de validation"
+                    }
+                }
+            }
+        },
+        "/users/inscrirCandidat": {
+            "post": {
+                "summary": "Inscrire un candidat",
+                "operationId": "f66cef3bd504d9d8a46d964b68a1a0f7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nom": {
+                                        "type": "string"
+                                    },
+                                    "prenom": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "adresse": {
+                                        "type": "string"
+                                    },
+                                    "niveau_etude": {
+                                        "type": "string"
+                                    },
+                                    "date_naissance": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Utilisateur ajouté avec succès"
+                    },
+                    "422": {
+                        "description": "Erreur de validation"
+                    }
+                }
+            }
+        },
+        "/users/inscrirAdmin": {
+            "post": {
+                "summary": "Inscrire un administrateur",
+                "operationId": "c111995d9f4944d604f2c8b7ca9939cb",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "nom": {
+                                        "type": "string"
+                                    },
+                                    "prenom": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "adresse": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Utilisateur ajouté avec succès"
+                    },
+                    "422": {
+                        "description": "Erreur de validation"
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "summary": "Connecter un utilisateur",
+                "operationId": "2bed00028ae8e20c4e21a4f7b8c6c281",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Utilisateur connecté avec succès"
+                    },
+                    "422": {
+                        "description": "Détails invalides"
+                    }
+                }
+            }
+        }
+    }
+}
