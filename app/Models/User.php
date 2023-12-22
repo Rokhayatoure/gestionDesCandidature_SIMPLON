@@ -33,21 +33,30 @@ class User extends Authenticatable implements JWTSubject
    
         // ...
     
-        public function roles(): BelongsToMany
-        {
-            return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
-        }
+        // public function roles(): BelongsToMany
+        // {
+        //     return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
+        // }
     
-        public function formation(): HasMany
+        public function formation()
         {
             return $this->hasMany(Formation::class);
+        }
+        public function roles()
+        {
+            return $this->belongsToMany(Role::class, 'user_role', 'user_id', 'role_id');
         }
     
         public function hasRole($role)
         {
             return $this->roles->contains('nonRole', $role);
         }
-    
+  
+        // public function hasRole($role)
+        // {
+        //     return $this->roles && $this->roles->contains('nonRole', $role);
+        // }
+        
     
     // public function getJWTIdentifier()
     // {

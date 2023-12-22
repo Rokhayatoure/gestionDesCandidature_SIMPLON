@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\User;
 use App\Models\Formation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,9 +18,11 @@ use OpenAi\Annotations as OA;
 
 class FormationController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    // public function __construct()
+    // {
+    //     $this->middleware('role:admin')->except(['index', 'show']);
+    // }
+
     public function index( Formation $formation)
     {
     
@@ -47,6 +50,16 @@ class FormationController extends Controller
     public function store(Request $request)
 {
    // Validation des données du formulaire
+//    
+// if (!Auth::check()) {
+//     return response()->json(['errors' => 'Vous devez être connecté pour effectuer une candidature.'], 401);
+// }
+// $user = Auth::User();
+//    if (!$user->hasRole('admin')) {
+//     return response()->json([
+//         "message" => "Accès non autorisé"
+//     ], 403);
+// }
 
     $validator = Validator::make($request->all(), [
         'nom' => 'required',
@@ -59,7 +72,7 @@ class FormationController extends Controller
         return redirect()->back()->withErrors($validator)->withInput();
     }
 
- $user = Auth::user();
+  $user = Auth::user();
         // $candidatRole = Role::where('nonRole', 'admin')->first(); // Assurez-vous que 'candidat' est le nom du rôle
     
         // if (!$user->hasRole($candidatRole)) {
@@ -72,7 +85,7 @@ class FormationController extends Controller
         'date_candidature' => $request->date_candidature,
         'date_limite_candidature' => $request->date_limite_candidature,
     ]);
-    return response()->json(['message' => 'Utilisateur ajouté avec succès'], 201);
+    return response()->json(['message' => 'FORMATION ajouté avec succès'], 201);
 
 
  }

@@ -28,37 +28,28 @@ Route::post('inscrirCandidat', [UserController::class ,'inscrirCandidat']);
 Route::post('inscrirAdmin', [UserController::class ,'inscrirAdmin']);
 Route::post('login', [UserController::class ,'login']);
 // Route::post('login', [UserController::class ,'login']);
-Route::post('/formation', [FormationController::class ,'store']);
+
 //CANDIDATURE
-Route::post('AJOUTER/{formation_id}', [CandidatureController::class ,'store'])->middleware('auth:api');
 
 
-// Route::apiResource('/formation',FormationController::class);
-// Route::apiResource('/formation{formationid}',FormationController::class);
-
-// Route::post('inscrirCandidat', 'inscrirCandidat');
-    Route::middleware('auth:api')->group(function(){
- //FORMATION
- 
- Route::post('index', [FormationController::class ,'index']);
- Route::post('show/{id}', [FormationController::class ,'show']);
- Route::post('update/{id}', [FormationController::class ,'update']);
+Route::middleware('auth:api','role:admin')->group( function (){
+   
+    
+});
+// Route::post('AJOUTER/{formation_id}', [CandidatureController::class ,'store']);
+Route::post('update/{id}', [FormationController::class ,'update']);
  Route::post('destroy/{id}', [FormationController::class ,'destroy']);
  Route::post('/accepter-candidature/{candidatureId}', [CandidatureController::class, 'acceptCandidature']);
  Route::post('/refuser-candidature/{candidatureId}', [CandidatureController::class, 'refuseCandidature']);
- Route::post(' show', [CandidatureController::class ,'listCandidaturesEnAttente']);
-// Route::post(' store/{id}', [CandidatureController::class ,'store']);
+ Route::get('show', [CandidatureController::class ,'listCandidaturesEnAttente']);
+ Route::get('/listrefuser ', [CandidatureController::class ,'listCandidaturesRefusees']);
+ Route::get('/showcandidature', [CandidatureController::class ,'candidatAcceptes']);
+ Route::post('formation', [FormationController::class ,'store']);
+ Route::get('liste_candidat',[CandidatureController::class,'ListeCandidat']);
 
- 
- });
- Route::post(' /listrefuser', [CandidatureController::class ,'listCandidaturesRefusees']);
- Route::post(' showrAccepter', [CandidatureController::class ,' listAcceptes']);
-Route::controller(AuthController::class)->group(function () {
-    // Route::post('login', 'login');
-    // Route::post('formation', 'formation.store');
-   
-    // Route::post('inscrirAdmin', 'inscrirAdmin');
-    // Route::post('logout', 'logout');
-    // Route::post('refresh', 'refresh');
-    // Route::post('ajouterRole','ajouterRole');
-});
+//  Route::group(['middleware' => 'role:admin'], function () {
+    
+// });
+
+Route::get('/index', [FormationController::class ,'index']);
+Route::get('show/{id}', [FormationController::class ,'show']);

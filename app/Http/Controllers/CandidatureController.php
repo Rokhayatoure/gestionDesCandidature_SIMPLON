@@ -134,7 +134,7 @@ class CandidatureController extends Controller
      *     @OA\Response(response="200", description="Liste des candidatures acceptées")
      * )
      */
-    public function listAcceptes(Request $request)
+    public function candidatAcceptes (Request $request)
     {
         
         $candidaturesAcceptees = Candidature::where('status', 'accepter')->get();
@@ -143,7 +143,11 @@ class CandidatureController extends Controller
     }
     
 
-
+public function ListeCandidat()
+{
+$candidature = Candidature::all();
+return response(['candidture'=>$candidature ],200);
+}
 
     /**
      * @OA\Get(
